@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Street Smarters Rescue Centre</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Netlify Identity Widget — required for CMS login redirect -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -779,7 +781,7 @@
       <div class="divider"></div>
       <p class="section-sub">Every photo tells a story of resilience, joy, and hope. Browse by category or upload new photos with your admin password.</p>
       <!-- Admin upload button -->
-      <button class="btn btn-outline-white" style="margin-top:.5rem;" onclick="openGalleryAdminLogin()">🔑 Admin Upload</button>
+      <a class="btn btn-outline-white" style="margin-top:.5rem;display:inline-block;" href="/admin/" target="_blank" rel="noopener">🔑 Admin Upload</a>
     </div>
   </div>
 
@@ -871,6 +873,13 @@
           <div class="gitem-overlay"><svg width="32" height="32" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
           <span class="gitem-caption">Games &amp; fun</span>
         </div>
+      </div>
+
+      <!-- Permanent upload notice + temp upload area -->
+      <div style="margin-top:2rem;background:var(--yellow-light);border:1.5px solid var(--yellow);border-radius:16px;padding:1.2rem 1.5rem;font-size:13px;color:var(--warm-brown);line-height:1.7;" class="reveal">
+        <strong>📌 Want to add photos or videos permanently?</strong><br>
+        Use the <strong>Admin Upload</strong> button above — this opens the CMS where you log in with your GitHub account and upload files that are saved directly to the repository. They will appear in the gallery on every device, every browser, forever.
+        The quick-upload panel below works for <em>temporary previews only</em> — uploads disappear on reload.
       </div>
 
       <!-- Upload area (hidden by default, revealed when admin unlocked) -->
@@ -1892,6 +1901,14 @@ function triggerReveals() {
 }
 
 document.addEventListener('DOMContentLoaded', triggerReveals);
+</script>
+<!-- Netlify Identity — only redirects to /admin after a successful login action -->
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("login", function() {
+      document.location.href = "/admin/";
+    });
+  }
 </script>
 </body>
 </html>
