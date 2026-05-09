@@ -781,7 +781,7 @@
       <div class="divider"></div>
       <p class="section-sub">Every photo tells a story of resilience, joy, and hope. Browse by category or upload new photos with your admin password.</p>
       <!-- Admin upload button -->
-      <a class="btn btn-outline-white" style="margin-top:.5rem;display:inline-block;" href="/admin/" target="_blank">🔑 Admin Upload</a>
+      <a class="btn btn-outline-white" style="margin-top:.5rem;display:inline-block;" href="/admin/" target="_blank" rel="noopener">🔑 Admin Upload</a>
     </div>
   </div>
 
@@ -1902,15 +1902,11 @@ function triggerReveals() {
 
 document.addEventListener('DOMContentLoaded', triggerReveals);
 </script>
-<!-- Netlify Identity redirect — sends logged-in users back to /admin/ -->
+<!-- Netlify Identity — only redirects to /admin after a successful login action -->
 <script>
   if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/admin/";
-        });
-      }
+    window.netlifyIdentity.on("login", function() {
+      document.location.href = "/admin/";
     });
   }
 </script>
