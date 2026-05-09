@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Street Smarters Rescue Centre</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- Netlify Identity Widget — required for CMS login redirect -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -1901,14 +1899,6 @@ function triggerReveals() {
 }
 
 document.addEventListener('DOMContentLoaded', triggerReveals);
-</script>
-<!-- Netlify Identity — only redirects to /admin after a successful login action -->
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("login", function() {
-      document.location.href = "/admin/";
-    });
-  }
 </script>
 </body>
 </html>
